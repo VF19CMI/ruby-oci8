@@ -569,7 +569,6 @@ class OCI8
       desc << "(ADDRESS=(PROTOCOL=TCP)(HOST=#{$2 || $3})(PORT=#{$4 || 1521}))"
       if tcp_connect_timeout
         desc << "(TRANSPORT_CONNECT_TIMEOUT=#{tcp_connect_timeout})"
-        desc <<
       end
       if connect_timeout
         desc << "(CONNECT_TIMEOUT=#{connect_timeout})"
