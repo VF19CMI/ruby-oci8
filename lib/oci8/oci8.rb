@@ -564,11 +564,12 @@ class OCI8
       connect_data << "(SERVICE_NAME=#$5)"
       connect_data << "(SERVER=#$6)" if $6
       connect_data << "(INSTANCE_NAME=#$7)" if $7
-      desc = []
+      desc = ["(enable=broken)"]
       desc << "(CONNECT_DATA=#{connect_data.join})"
       desc << "(ADDRESS=(PROTOCOL=TCP)(HOST=#{$2 || $3})(PORT=#{$4 || 1521}))"
       if tcp_connect_timeout
         desc << "(TRANSPORT_CONNECT_TIMEOUT=#{tcp_connect_timeout})"
+        desc <<
       end
       if connect_timeout
         desc << "(CONNECT_TIMEOUT=#{connect_timeout})"
@@ -612,7 +613,7 @@ class OCIError
   #     # => #<OCIError: ORA-04043: object %s does not exist>
   #     # When NLS_LANG=german_germany.AL32UTF8
   #     # => #<OCIError: ORA-04043: Objekt %s ist nicht vorhanden>
-  #     
+  #
   #     # with one parameter
   #     OCIError.new(4043, 'table_name')
   #     # When NLS_LANG=american_america.AL32UTF8
