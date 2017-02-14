@@ -603,6 +603,9 @@ EOS
   end
 
   def self.check_lib_in_path(paths, glob_name, check_proc)
+    print " ---> Looking for paths: #{paths}..."
+    print " ---> Looking for glob_name: #{glob_name}..."
+
     return nil if paths.nil?
     paths.split(File::PATH_SEPARATOR).each do |path|
       next if path.nil? or path == ''
@@ -956,7 +959,7 @@ EOS
 The 'sudo' command unset some environment variables for security reasons.
 Pass required varialbes as follows
      sudo env #{OraConf.ld_envs[0]}=$#{OraConf.ld_envs[0]} #{sudo_command}
-  or 
+  or
      sudo env ORACLE_HOME=$ORACLE_HOME #{sudo_command}
 EOS
         end
