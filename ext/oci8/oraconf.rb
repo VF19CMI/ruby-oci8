@@ -605,7 +605,6 @@ EOS
   def self.check_lib_in_path(paths, glob_name, check_proc)
     print " ---> Looking for paths: #{paths}..."
     print " ---> Looking for glob_name: #{glob_name}..."
-    print " ---> #{Dir.glob(File.join(path, '**/*')).inspect}"
 
     return nil if paths.nil?
     paths.split(File::PATH_SEPARATOR).each do |path|
@@ -613,6 +612,7 @@ EOS
       print "    checking #{path}... "
       path.gsub!(/\\/, '/') if /mswin32|mswin64|cygwin|mingw32|bccwin32/ =~ RUBY_PLATFORM
       files = Dir.glob(File.join(path, glob_name))
+      print " ---> #{Dir.glob(File.join(path, '*'))}"
       if files.empty?
         puts "no"
         next
